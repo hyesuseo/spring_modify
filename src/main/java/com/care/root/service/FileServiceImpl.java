@@ -69,12 +69,40 @@ public class FileServiceImpl implements FileService{
 		
 	}
 	@Override
-	public int modify(String file, String id, String name) {
-		int result = 0;
+	public FileDTO getMdata(String id) {
+		// TODO Auto-generated method stub
+		return map.getMdata(id);
+	}
+	@Override
+	public void modify(MultipartFile file, String origin, FileDTO dto) {
+		//잘 가져오는지 확인
+//		System.out.println("file"+ file);
+//		System.out.println("origin"+ origin);
+//		System.out.println("dto.id"+ dto.getId());
+//		System.out.println("dto.name"+ dto.getName());
 		
-		result = map.modify(file, id, name);
-		return 0;
+		if(file.isEmpty()) {
+			dto.setImgFileName(origin);
+			map.modify(dto);
+		}else {
+			SimpleDateFormat fo = new SimpleDateFormat("yyyyMMddHHmmss-"); //괄호 안에는 지정할 형식을 적어줌
+			String sysFileName = fo.format(new Date());
+			sysFileName += file.getOriginalFilename();
+			
+			dto.setImgFileName(sysFileName);
+			File f = new File(IMG_REPO+"/"+sysFileName); //경로를 파일형태로 바꿔준다.
+			try {
+				file.transferTo(f); //파일 저장이 잘 되었다면 삭제가 필요하다
+				File d = new File(IMG_REPO+"/"+origin); //삭제해야하는 이미지의 이름
+				d.delete();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+			map.modify(dto);
+		}
+		
+		
 	}
 	
-
+	
 }

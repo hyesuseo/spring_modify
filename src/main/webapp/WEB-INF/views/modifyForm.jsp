@@ -9,11 +9,12 @@
 </head>
 <body>
 
-		<h3>${id}수정</h3>
-		<form action="${contextPath}/modify">
-		<input type="text" name="id" value="${id}" readonly><br> 
-		<input type="text" name="name" value="${name}"><br> 
-		<input type="file" name="file" value="${file}"><br> 
+		<h3>파일수정</h3>
+		<form action="${contextPath}/modify" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="origin" value="${info.imgFileName}"><br> 
+		<input type="text" name="id" value="${info.id}" readonly><br> 
+		<input type="text" name="name" value="${info.name}"><br> 
+		<input type="file" name="file"><br> 
 		<input type="submit" value="수정"><br> 
 		</form>
 

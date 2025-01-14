@@ -12,5 +12,6 @@ public interface FileService {
 	public void fileProcess(MultipartFile file, String id, String name);
 	public List<FileDTO> getList();
 	public void delete(String file, String id);
-	public int modify(String file, String id, String name);
+	public FileDTO getMdata(String id);
+	public void modify(MultipartFile file, String origin, FileDTO dto);
 }

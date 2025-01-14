@@ -15,7 +15,7 @@
 		file name: ${dto.imgFileName}<br>
 		<img src="${contextPath}/download?file=${dto.imgFileName}" alt="이미지없음" width="100px" height="100px">
 		<a href="${contextPath}/download?file=${dto.imgFileName}">${dto.imgFileName}</a>
-		<a href="${contextPath}/modifyForm?file=${dto.imgFileName}&id=${dto.id}&name=${dto.name}">수정</a>
+		<a href="${contextPath}/modifyForm?id=${dto.id}">수정</a>
 		<a href="${contextPath}/delete?file=${dto.imgFileName}&id=${dto.id}">삭제</a>
 		
 		<hr>
